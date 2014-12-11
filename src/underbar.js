@@ -256,6 +256,18 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var index;
+    var addProperty = function(value, key) {
+      if(!(key in obj)) {
+        obj[key] = value;
+      }
+    };
+
+    for(index = 1; index < arguments.length; index += 1) {
+      _.each(arguments[index], addProperty);
+    }
+
+    return obj;
   };
 
 
