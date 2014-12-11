@@ -173,7 +173,6 @@
       if (accumulator === undefined) {
         accumulator = elem;
       } else {
-          console.log(iterator(accumulator, elem));
           accumulator = iterator(accumulator, elem);
       }
     });
@@ -202,7 +201,6 @@
     }
 
     return _.reduce(collection, function(passed, item) {
-      console.log(passed);
       if (!passed) {
         return false;
       }
@@ -214,6 +212,13 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (iterator === undefined || iterator === null) {
+      iterator = _.identity;
+    }
+
+    return !(_.every(collection, function(item) {
+      return !(iterator(item));
+    }));
   };
 
 
