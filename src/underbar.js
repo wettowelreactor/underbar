@@ -198,7 +198,7 @@
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     if (iterator === undefined || iterator === null) {
-      iterator = _.idetnity;
+      iterator = _.identity;
     }
 
     return _.reduce(collection, function(passed, item) {
@@ -206,7 +206,7 @@
       if (!passed) {
         return false;
       }
-      return iterator ? !!iterator(item) : !!item;
+      return !!iterator(item);
     }, true);
   };
 
